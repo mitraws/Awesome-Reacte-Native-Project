@@ -1,8 +1,8 @@
 // src/screens/GameScreen.js
 import React, { useEffect, useState } from "react";
-import { Button, View, Text } from "react-native";
+import { View, Text } from "react-native";
 import { DeviceMotion } from "expo-sensors";
-
+import MyButton from "../components/MyButton"
 export default function GameScreen() {
     const [paused, set_paused] = useState(false);
     const [color, set_color] = useState("white");
@@ -42,7 +42,7 @@ export default function GameScreen() {
       <Text style={{ marginBottom: 20, fontSize: 24, fontWeight: "bold" }}>
         Choose your color!
       </Text>
-        <Button
+        <MyButton
           title={paused ? "Restart" : "Pause"}
           onPress={() => {
             set_paused(!paused);
