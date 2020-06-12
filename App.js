@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
+  TextInput,
   TouchableOpacity,
   ScrollView,
   Button,
@@ -11,6 +12,7 @@ import {
 } from "react-native";
 
 export default function App() {
+  const [inputText, setInputText] = useState("");
   const randomNum = useRef(Math.random()).current;
 
   return (
@@ -43,17 +45,23 @@ export default function App() {
           <Text>Hello again!</Text>
         </View>
         <Button
-          onPress={() => Alert.alert("Learning RN is so easy")}
+          onPress={() => Alert.alert(`You typed: ${inputText}`)}
           title="Learn More"
           color="#c1262c"
         />
+        <TextInput
+          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          value={inputText}
+          onChangeText={(text) => setInputText(text)}
+          placeholder="type here"
+        ></TextInput>
         {[0, 1, 2, 3, 4].map((i) => {
           return (
             <TouchableOpacity
+              key={i}
               onPress={() => Alert.alert("Learning RN is so easy")}
             >
               <Image
-                key={i}
                 source={{
                   uri: `https://picsum.photos/500/300?random=${randomNum + i}`,
                 }}
