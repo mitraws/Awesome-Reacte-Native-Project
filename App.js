@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import {
+  ScrollView,
   Button,
   Alert,
   Text,
@@ -12,6 +13,7 @@ export default function App() {
   const randomNum = useRef(Math.random()).current;
 
   return (
+    <ScrollView>
     <View style={{ marginHorizontal: 40, marginVertical: 60 }}>
       <Text style={{ fontWeight: "bold", fontSize: 24, marginBottom: 30 }}>
         Hello React Native
@@ -54,5 +56,6 @@ export default function App() {
   );
 })}
     </View>
+    </ScrollView>
   );
 }
