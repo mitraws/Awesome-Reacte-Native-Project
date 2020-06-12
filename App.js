@@ -42,6 +42,17 @@ export default function App() {
         title="Learn More"
         color="#c1262c"
       />
+      {[0, 1, 2, 3, 4].map(i => {
+  return (
+    <Image
+      key={i}
+      source={{
+        uri: `https://picsum.photos/500/300?random=${randomNum + i}`
+      }}
+      style={{ width: "100%", height: 160, marginBottom: 30 }}
+    />
+  );
+})}
     </View>
   );
 }
