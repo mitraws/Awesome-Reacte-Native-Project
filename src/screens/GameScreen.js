@@ -1,9 +1,10 @@
 // src/screens/GameScreen.js
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { Button, View, Text } from "react-native";
 import { DeviceMotion } from "expo-sensors";
 
 export default function GameScreen() {
+    const [paused, set_paused] = useState(false);
     const [color, set_color] = useState("white");
 
   useEffect(() => {
@@ -17,13 +18,14 @@ export default function GameScreen() {
         0,
         Math.round(30 + 60 * data.rotation.beta) % 100
       );
-
+      if (!paused) {
       set_color(`hsl(${hue}, ${saturation}%, 50%)`);
+      }
         });
 
     // cleanup on unmount
     return () => subscription.remove();
-}, [set_color]);
+}, [set_color, paused]);
 
   return (
     <View
@@ -40,6 +42,12 @@ export default function GameScreen() {
       <Text style={{ marginBottom: 20, fontSize: 24, fontWeight: "bold" }}>
         Choose your color!
       </Text>
+        <Button
+          title={paused ? "Restart" : "Pause"}
+          onPress={() => {
+            set_paused(!paused);
+          }}
+        />
     </View>
   );
 }
